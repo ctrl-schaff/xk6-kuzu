@@ -5,7 +5,26 @@ import (
 
 	"github.com/grafana/sobek"
 	"github.com/kuzudb/go-kuzu"
+	"go.k6.io/k6/js/modules"
 )
+
+type RootModule struct{}
+type KuzuModule struct{ vu modules.VU }
+
+func NewModule() *RootModule {
+	return &RootModule{}
+}
+
+func (*RootModule) NewModuleInstance(vu modules.VU) modules.Instance {
+	return &KuzuModule{vu}
+}
+
+func (km *KuzuModule) Exports() modules.Exports {
+	return modules.Exports{Default: km}
+}
+
+var _ modules.Module = (*RootModule)(nil)
+var _ modules.Instance = (*KuzuModule)(nil)
 
 // options represents connection related options for the system configuration
 // parameter when calling OpenDatabase().
@@ -57,7 +76,7 @@ type DatabaseConnection struct {
 	ctx  func() context.Context
 }
 
-func (mod *module) OpenConnection(databasePath string, opts *kuzuOptions) (*DatabaseConnection, error) {
+func (kmod *KuzuModule) OpenConnection(databasePath string, opts *kuzuOptions) (*DatabaseConnection, error) {
 	kuzuConfig := opts.apply()
 	db, err := kuzu.OpenDatabase(databasePath, kuzuConfig)
 	if err != nil {
@@ -70,7 +89,7 @@ func (mod *module) OpenConnection(databasePath string, opts *kuzuOptions) (*Data
 		return nil, err
 	}
 
-	return &DatabaseConnection{conn: conn, ctx: mod.vu.Context}, nil
+	return &DatabaseConnection{conn: conn, ctx: kmod.vu.Context}, nil
 }
 
 func (kuzuConn *DatabaseConnection) Query(queryString string) (*kuzu.QueryResult, error) {
