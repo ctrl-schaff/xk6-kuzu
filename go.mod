@@ -6,7 +6,7 @@ toolchain go1.24.3
 
 require (
 	github.com/kuzudb/go-kuzu v0.10.0
-	go.k6.io/xk6 v0.20.1 // indirect
+	go.k6.io/xk6 v0.16.1 // indirect
 )
 
 require (
@@ -38,7 +38,7 @@ require (
 	github.com/grafana/sobek v0.0.0-20250723111835-dd8a13f0d439 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.1 // indirect
 	github.com/hhatto/gorst v0.0.0-20181029133204-ca9f730cac5b // indirect
-	github.com/inconshreveable/mousetrap v1.1.0 // indirect
+	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jdkato/prose v1.2.1 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
@@ -59,9 +59,8 @@ require (
 	github.com/sirupsen/logrus v1.9.3 // indirect
 	github.com/skeema/knownhosts v1.3.1 // indirect
 	github.com/spf13/afero v1.1.2 // indirect
-	github.com/spf13/cobra v1.9.1 // indirect
-	github.com/spf13/pflag v1.0.6 // indirect
-	github.com/szkiba/docsme v0.2.0 // indirect
+	github.com/spf13/cobra v1.4.0 // indirect
+	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/szkiba/efa v0.1.0 // indirect
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
 	go.k6.io/k6 v1.2.2 // indirect
