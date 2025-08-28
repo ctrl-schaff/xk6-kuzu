@@ -6,5 +6,5 @@ import (
 )
 
 func init() {
-	modules.Register("k6/x/kuzu", kuzu.NewModule())
+	modules.Register(kuzu.ImportPath, kuzu.New())
 }
